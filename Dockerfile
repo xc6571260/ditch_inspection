@@ -12,9 +12,16 @@ RUN apt-get update && apt-get install -y \
     curl \
     ca-certificates \
     libgl1 \
+    libglib2.0-0 \
+    libsm6 \
+    libxrender1 \
+    libxext6 \
     && apt-get clean
 
+
+# 這裡建立 python3、python 指令
 RUN ln -sf /usr/bin/python3.10 /usr/bin/python3 && \
+    ln -sf /usr/bin/python3.10 /usr/bin/python && \
     curl -sS https://bootstrap.pypa.io/get-pip.py | python3
 
 RUN pip install --upgrade pip
