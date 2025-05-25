@@ -62,9 +62,7 @@ def process_image(image_path, output_path):
             cv2.rectangle(img, (x1i, y1i), (x2i, y2i), color, 2)
             draw_label_with_background(img, label, x1i, y1i, color)
         elif label == "error":
-            color = (255, 0, 0)
-            cv2.rectangle(img, (x1i, y1i), (x2i, y2i), color, 2)
-            draw_label_with_background(img, 'TBC', x1i, y1i, color)
+            pass
 
     # 儲存圖片
     os.makedirs(output_path, exist_ok=True)
