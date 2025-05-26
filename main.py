@@ -46,6 +46,10 @@ def process_image(image_path, output_path):
     merged_boxes = merge_by_proximity(all_boxes, eps=eps_distance)
 
     # 分類每個框的內容
+    health_count = 0
+    stocking_count = 0
+    total_count = 0
+
     for box in merged_boxes:
         x1, y1, x2, y2, conf, cls = box
         x1i, y1i, x2i, y2i = map(int, [x1, y1, x2, y2])
@@ -57,18 +61,25 @@ def process_image(image_path, output_path):
             color = (0, 255, 0)
             cv2.rectangle(img, (x1i, y1i), (x2i, y2i), color, 2)
             draw_label_with_background(img, label, x1i, y1i, color)
+            health_count += 1
+            total_count += 1
         elif label == "stocking":
             color = (0, 0, 255)
             cv2.rectangle(img, (x1i, y1i), (x2i, y2i), color, 2)
             draw_label_with_background(img, label, x1i, y1i, color)
+            stocking_count += 1
+            total_count += 1
         elif label == "error":
-            pass
+            continue
 
     # 儲存圖片
     os.makedirs(output_path, exist_ok=True)
     save_path = os.path.join(output_path, f"{img_name}.jpg")
     cv2.imwrite(save_path, img)
     print(f"✅ 已完成: {img_name}")
+
+    print(f"[INFO] image_name: {img_name}, total: {total_count}, health: {health_count}, stocking: {stocking_count}")
+
 
 def process_folder():
     for fname in os.listdir(input_folder):
