@@ -7,7 +7,7 @@
 
 ## 📍 平台規劃星現 -A區
 
-![平台規劃](poi_map.png)
+![平台規劃](fig/poi_map.png)
 
 - POI 共 67 個，經緯度位置於poi資料夾內
 - 規劃預測目標：
@@ -22,13 +22,21 @@
 
 ## 🛠️ 工作流程圖
 
-![流程圖](workflow.png)
+![流程圖](fig/workflow.png)
 
 1. UAV 拍攝原始影像（4000x3000）
 2. 切割為 1024x1024 影像
 3. 使用 YOLOv11 偵測排水溝蓋位置
 4. 物件分類、健康/堵塞判斷
 5. DBSCAN 聚類後將結果標示於原影像
+
+---
+
+## 📊 成果範例
+
+<div align="center">
+  <img src="fig/example.png" width="600"/>
+</div>
 
 ---
 
